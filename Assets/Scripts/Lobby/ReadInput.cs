@@ -6,9 +6,15 @@ public class ReadInput : MonoBehaviour
 {
     private string _input;
     
-    public void ReadStringInput(string s)
+    public void CreateLobbyName(string s)
     {
         _input = s;
+        GameManager.Instance.lobbyName = s;
         Debug.Log(_input);
+    }
+
+    public void JoinLobbyByName(string s)
+    {
+        GameManager.Instance.joinLobbyByName = s;
     }
 }

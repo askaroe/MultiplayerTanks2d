@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
 
     private string _lobbyId;
-    private string lobbyName;
+    public string lobbyName;
+    public string joinLobbyByName;
 
     private RelayHostData _hostData;
     private RelayJoinData _joinData;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     public UnityAction<string> UpdateState;
     // Notify Match found
     public UnityAction MatchFound;
+
 
     private void Awake()
     {
@@ -72,9 +74,9 @@ public class GameManager : MonoBehaviour
         // Player with id connected to our session
 
         Debug.Log("Connected player with id: " + id);
-
         UpdateState?.Invoke("Player found!");
         MatchFound?.Invoke();
+        LobbyUI.Instance.UpdatePlayersCountInLobbyCreate((int)(id + 1));
     }
 
     #endregion
@@ -138,7 +140,7 @@ public class GameManager : MonoBehaviour
 
             foreach (var lobbyitr in queryResponse.Results)
             {
-                if (lobbyitr.Name == "game_lobby")
+                if (lobbyitr.Name == lobbyName && lobbyitr.Name == joinLobbyByName)
                 {
                     lobby = lobbyitr;
                     Debug.Log("found!!!");
@@ -217,7 +219,7 @@ public class GameManager : MonoBehaviour
             // Retrieve JoinCode
             _hostData.JoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
-            lobbyName = "game_lobby";
+            if (lobbyName.Length == 0) lobbyName = "game_lobby";
             int maxPlayers = 2;
             CreateLobbyOptions options = new CreateLobbyOptions();
             options.IsPrivate = false;

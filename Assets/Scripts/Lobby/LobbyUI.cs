@@ -5,6 +5,21 @@ using UnityEngine.UI;
 
 public class LobbyUI : MonoBehaviour
 {
+    private static LobbyUI _instance;
+
+    public static LobbyUI Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.LogError("Intance is NULL!");
+            }
+            return _instance;
+        }
+    }
+    
+    
     [SerializeField]
     private GameObject _lobbyButtons;
     [SerializeField]
@@ -12,6 +27,14 @@ public class LobbyUI : MonoBehaviour
     [SerializeField]
     private GameObject _lobbyJoinState;
     private GameObject _currentState;
+    [SerializeField]
+    private Text _playersInLobbyCreateText;
+
+
+    private void Awake()
+    {
+        _instance = this;
+    }
 
     public void CreateLobbyButton()
     {
@@ -33,5 +56,10 @@ public class LobbyUI : MonoBehaviour
         _lobbyButtons.SetActive(true);
     }
 
+    public void UpdatePlayersCountInLobbyCreate(int playerCount_text)
+    {
+        
+        _playersInLobbyCreateText.text = "PLayers in Lobby: " + playerCount_text.ToString();
+    }
 
 }

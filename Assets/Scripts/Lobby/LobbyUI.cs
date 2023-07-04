@@ -29,6 +29,10 @@ public class LobbyUI : MonoBehaviour
     private GameObject _currentState;
     [SerializeField]
     private Text _playersInLobbyCreateText;
+    [SerializeField]
+    private Text _playersInLobbyJoinText;
+    [SerializeField]
+    private GameObject _startGameButton;
 
 
     private void Awake()
@@ -60,6 +64,16 @@ public class LobbyUI : MonoBehaviour
     {
         
         _playersInLobbyCreateText.text = "PLayers in Lobby: " + playerCount_text.ToString();
+    }
+
+    public void UpdatePlayersCountInLobbyJoin(int playerCount_text)
+    {
+        _playersInLobbyJoinText.text = "PLayers in Lobby: " + playerCount_text.ToString();
+    }
+
+    public void StartGameButton()
+    {
+        _startGameButton.SetActive(true);
     }
 
 }

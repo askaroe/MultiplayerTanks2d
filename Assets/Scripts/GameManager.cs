@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private string _lobbyId;
     public string lobbyName;
     public string joinLobbyByName;
+    public int maxPlayers = 2;
 
     private RelayHostData _hostData;
     private RelayJoinData _joinData;
@@ -77,6 +78,11 @@ public class GameManager : MonoBehaviour
         UpdateState?.Invoke("Player found!");
         MatchFound?.Invoke();
         LobbyUI.Instance.UpdatePlayersCountInLobbyCreate((int)(id + 1));
+        LobbyUI.Instance.UpdatePlayersCountInLobbyJoin((int)(id + 1));
+        if((int)(id+1) == maxPlayers)
+        {
+            LobbyUI.Instance.StartGameButton();
+        }
     }
 
     #endregion
@@ -200,7 +206,7 @@ public class GameManager : MonoBehaviour
         UpdateState?.Invoke("Creating a new match...");
 
         // External connections
-        int maxConnections = 1;
+        int maxConnections = maxPlayers - 1;
 
         try
         {
@@ -220,7 +226,7 @@ public class GameManager : MonoBehaviour
             _hostData.JoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
             if (lobbyName.Length == 0) lobbyName = "game_lobby";
-            int maxPlayers = 2;
+            
             CreateLobbyOptions options = new CreateLobbyOptions();
             options.IsPrivate = false;
 

@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public string lobbyName;
     public string joinLobbyByName;
     public int maxPlayers = 2;
+    [SerializeField]
+    private GameObject _playerPrefab;
 
     private RelayHostData _hostData;
     private RelayJoinData _joinData;
@@ -299,6 +301,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         NetworkManager.Singleton.SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        _playerPrefab.SetActive(true);
     }
 
     private void OnDestroy()

@@ -36,6 +36,9 @@ public class PlayerNetwork : NetworkBehaviour
             transform.position += new Vector3(0, verticalInput * _playerSpeed * Time.deltaTime, 0f);
             transform.rotation = Quaternion.Euler(0f, 0f, 90.0f - 90.0f * verticalInput);
         }
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -8.4f, 8.4f),
+            Mathf.Clamp(transform.position.y, -4.5f, 4.5f), 0f);
     }
 
 }

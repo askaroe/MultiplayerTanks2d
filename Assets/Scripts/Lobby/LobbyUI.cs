@@ -33,6 +33,8 @@ public class LobbyUI : MonoBehaviour
     private Text _playersInLobbyJoinText;
     [SerializeField]
     private GameObject _startGameButton;
+    [SerializeField]
+    private GameObject _createLobbyButton;
 
 
     private void Awake()
@@ -44,6 +46,7 @@ public class LobbyUI : MonoBehaviour
     {
         _lobbyButtons.SetActive(false);
         _lobbyCreationState.SetActive(true);
+        _createLobbyButton.SetActive(true);
         _currentState = _lobbyCreationState;
     }
 
@@ -74,6 +77,11 @@ public class LobbyUI : MonoBehaviour
     public void StartGameButton()
     {
         _startGameButton.SetActive(true);
+    }
+
+    public void HideButtonAfterLobbyCreated()
+    {
+        _createLobbyButton.SetActive(false);
     }
 
 }

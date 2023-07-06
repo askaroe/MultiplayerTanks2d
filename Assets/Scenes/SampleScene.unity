@@ -1248,6 +1248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4933256660608906735, guid: 9def0e8a6e72c104b85749790f968ca3, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5350752097819880964, guid: 9def0e8a6e72c104b85749790f968ca3, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -203,6 +203,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Creating a new lobby...");
 
+        LobbyUI.Instance.HideButtonAfterLobbyCreated();
+
         UpdateState?.Invoke("Creating a new match...");
 
         // External connections

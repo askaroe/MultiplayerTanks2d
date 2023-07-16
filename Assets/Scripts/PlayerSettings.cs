@@ -7,19 +7,19 @@ using UnityEngine.SceneManagement;
 public class PlayerSettings : NetworkBehaviour
 {
     [SerializeField]
-    private SpriteRenderer _spriteRenderer;
+    private SpriteRenderer spriteRenderer;
     [SerializeField]
-    private Sprite[] _playerSprites;
+    private Sprite[] playerSprites;
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        _spriteRenderer.sprite = _playerSprites[(int)OwnerClientId];
+        spriteRenderer.sprite = playerSprites[(int)OwnerClientId];
         switch (OwnerClientId)
         {
             case 0:
@@ -41,4 +41,5 @@ public class PlayerSettings : NetworkBehaviour
                 break;
         }
     }
+
 }

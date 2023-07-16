@@ -65,10 +65,6 @@ public class GameManager : MonoBehaviour
         NetworkManager.Singleton.OnClientConnectedCallback += ClientConnected;
     }
 
-    private void Update()
-    {
-        
-    }
 
     #region Network events
 

@@ -7,8 +7,6 @@ using Unity.Netcode.Components;
 public class Bullet : NetworkBehaviour
 {
     [SerializeField]
-    private float _life = 3.0f;
-    [SerializeField]
     private float _bulletSpeed = 10.0f;
 
 
@@ -29,11 +27,6 @@ public class Bullet : NetworkBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log(other.gameObject.name);
-    }
-
     IEnumerator BulletDespawning()
     {
         yield return new WaitForSeconds(3.0f);
@@ -50,5 +43,17 @@ public class Bullet : NetworkBehaviour
     private void DespawningClientRpc()
     {
         StartCoroutine(BulletDespawning());
+    }
+
+    [ServerRpc]
+    public void DespawnServerRpc()
+    {
+        GetComponent<NetworkObject>().Despawn(true);
+    }
+
+    [ClientRpc]
+    public void DespawnClientRpc()
+    {
+        GetComponent<NetworkObject>().Despawn(true);
     }
 }

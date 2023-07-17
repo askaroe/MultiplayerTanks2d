@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.SceneManagement;
-using System;
 
 public class PlayerNetwork : NetworkBehaviour
 {
@@ -23,6 +21,7 @@ public class PlayerNetwork : NetworkBehaviour
 
     private BoxCollider2D _collider;
     private bool _isDestroyed = false;
+
 
     private void Start()
     {
@@ -68,7 +67,12 @@ public class PlayerNetwork : NetworkBehaviour
         {
             GetComponent<NetworkHealthState>().healthPoint.Value -= 1;
         }
+        if (other.GetComponent<Coin>())
+        {
+            GetComponent<NetworkCoinsCollectedState>().coinsCollected.Value += 1;
+        }
     }
+    
 
     public void PlayerDestroyed()
     {
@@ -76,5 +80,6 @@ public class PlayerNetwork : NetworkBehaviour
         _collider.enabled = false;
         _isDestroyed = true;
     }
+
 
 }

@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : NetworkBehaviour
+public class UIManager : MonoBehaviour
 {
     private static UIManager _instance;
     public static UIManager Instance
@@ -36,8 +36,6 @@ public class UIManager : NetworkBehaviour
     private Text _coinsEarnedTextLose;
     [SerializeField]
     private Text _coinsEarnedTextWin;
-    [SerializeField]
-    private Text _healthPointsText;
 
 
     private Dictionary<int, string> _dict = new Dictionary<int, string>

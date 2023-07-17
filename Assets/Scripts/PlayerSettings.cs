@@ -42,4 +42,9 @@ public class PlayerSettings : NetworkBehaviour
         }
     }
 
+    public void PlayerDesroyed()
+    {
+        spriteRenderer.sprite = playerSprites[4];
+    }
+
 }

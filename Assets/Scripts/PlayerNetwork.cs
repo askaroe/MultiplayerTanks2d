@@ -21,6 +21,14 @@ public class PlayerNetwork : NetworkBehaviour
     private NetworkVariable<int> _playerLife = new NetworkVariable<int>(3,
         NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+    private BoxCollider2D _collider;
+    private bool _isDestroyed = false;
+
+    private void Start()
+    {
+        _collider = GetComponent<BoxCollider2D>();
+    }
+
     private void Update()
     {
         if (!IsOwner) return;
@@ -38,12 +46,12 @@ public class PlayerNetwork : NetworkBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        if(horizontalInput != 0)
+        if(horizontalInput != 0 && !_isDestroyed)
         {
             transform.position += new Vector3(horizontalInput * _playerSpeed * Time.deltaTime, 0f, 0f);
             transform.rotation = Quaternion.Euler(0f, 0f, -90.0f * horizontalInput);
         }
-        else if(verticalInput != 0)
+        else if(verticalInput != 0 && !_isDestroyed)
         {
             transform.position += new Vector3(0, verticalInput * _playerSpeed * Time.deltaTime, 0f);
             transform.rotation = Quaternion.Euler(0f, 0f, 90.0f - 90.0f * verticalInput);
@@ -60,6 +68,13 @@ public class PlayerNetwork : NetworkBehaviour
         {
             GetComponent<NetworkHealthState>().healthPoint.Value -= 1;
         }
+    }
+
+    public void PlayerDestroyed()
+    {
+        _playerSpeed = 0f;
+        _collider.enabled = false;
+        _isDestroyed = true;
     }
 
 }

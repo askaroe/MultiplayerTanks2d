@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class UpdatePlayerHp : MonoBehaviour
 {
-    [SerializeField]
-    private Text _playerHpText;
+    [SerializeField] private Sprite[] _playerHealthPoints;
+    [SerializeField] private Image _playerHealthPoint;
 
     private void OnEnable()
     {
@@ -21,6 +21,13 @@ public class UpdatePlayerHp : MonoBehaviour
 
     private void HealthChanged(int previousValue, int newValue)
     {
-        _playerHpText.text = "HP: " + newValue.ToString();
+        if (newValue > 0) _playerHealthPoint.sprite = _playerHealthPoints[newValue];
+        else if(newValue == 0)
+        {
+            _playerHealthPoint.sprite = _playerHealthPoints[newValue];
+            GetComponent<PlayerSettings>().PlayerDesroyed();
+            GetComponent<PlayerNetwork>().PlayerDestroyed();
+            
+        }
     }
 }

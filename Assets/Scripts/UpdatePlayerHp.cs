@@ -25,9 +25,8 @@ public class UpdatePlayerHp : MonoBehaviour
         else if(newValue == 0)
         {
             _playerHealthPoint.sprite = _playerHealthPoints[newValue];
-            GetComponent<PlayerSettings>().PlayerDesroyed();
+            GetComponent<PlayerSettings>().PlayerDestroyed();
             GetComponent<PlayerNetwork>().PlayerDestroyed();
-            
         }
     }
 }

@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,38 +23,22 @@ public class UIManager : MonoBehaviour
     }
 
     [SerializeField]
-    private GameObject _popUpWin;
-    [SerializeField]
-    private GameObject _popUpLose;
-    [SerializeField]
-    private GameObject _restartButton;
+    private GameObject _popUp;
     [SerializeField]
     private Text _playerWinText;
-    [SerializeField]
-    private Text _coinsEarnedTextLose;
-    [SerializeField]
-    private Text _coinsEarnedTextWin;
-
 
     private Dictionary<int, string> _dict = new Dictionary<int, string>
     {
-        {0, "Blue " },
-        {1, "Red " },
-        {2, "Green " },
-        {3, "Yellow " }
+        { 0, "Blue " },
+        { 1, "Red " },
+        { 2, "Green " },
+        { 3, "Yellow " }
     };
 
-    public void ShowPopUpLose(int coins)
+    public void ShowPopUp()
     {
-        _popUpLose.SetActive(true);
-        _coinsEarnedTextLose.text = "Coins Collected: " + coins.ToString();
-    }
-
-    public void ShowPopUpWin(int playerId, int coins)
-    {
-        _popUpWin.SetActive(true);
-        _playerWinText.text = _dict[playerId] + "Wins!";
-        _coinsEarnedTextWin.text = "Coins Collected: " + coins.ToString();
+        _popUp.SetActive(true);
+        _playerWinText.text = "Game Over!";
     }
 
 

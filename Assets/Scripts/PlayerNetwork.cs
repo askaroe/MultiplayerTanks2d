@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.SceneManagement;
@@ -13,7 +12,6 @@ public class PlayerNetwork : NetworkBehaviour
     private float _playerSpeed = 2.0f;
     [SerializeField] 
     private GameObject _playerUI;
-
     private bool _isTurnedOn = false;
 
     private NetworkVariable<int> _playerLife = new NetworkVariable<int>(3,
@@ -79,7 +77,6 @@ public class PlayerNetwork : NetworkBehaviour
         _playerSpeed = 0f;
         _collider.enabled = false;
         _isDestroyed = true;
+        PlayerManager.Instance.UpdateDestroyedPlayersCount();
     }
-
-
 }

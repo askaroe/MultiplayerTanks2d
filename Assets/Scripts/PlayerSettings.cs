@@ -11,6 +11,7 @@ public class PlayerSettings : NetworkBehaviour
     [SerializeField]
     private Sprite[] playerSprites;
 
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -42,9 +43,8 @@ public class PlayerSettings : NetworkBehaviour
         }
     }
 
-    public void PlayerDesroyed()
+    public void PlayerDestroyed()
     {
         spriteRenderer.sprite = playerSprites[4];
     }
-
 }

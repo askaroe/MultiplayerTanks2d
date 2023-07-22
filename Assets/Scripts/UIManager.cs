@@ -27,19 +27,19 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _playerWinText;
 
-    private Dictionary<int, string> _dict = new Dictionary<int, string>
-    {
-        { 0, "Blue " },
-        { 1, "Red " },
-        { 2, "Green " },
-        { 3, "Yellow " }
-    };
-
     public void ShowPopUp()
     {
         _popUp.SetActive(true);
         _playerWinText.text = "Game Over!";
     }
 
+    public void ToMainLobby()
+    {
+        GameManager.Instance.LeaveGame();
+    }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

@@ -300,6 +300,12 @@ public class GameManager : MonoBehaviour
         _playerPrefab.SetActive(true);
     }
 
+    public void LeaveGame()
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
+        _playerPrefab.SetActive(false);
+    }
+
     private void OnDestroy()
     {
         // We need to delete the lobby when we're not using it

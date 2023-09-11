@@ -27,10 +27,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _playerWinText;
 
-    public void ShowPopUp()
+    public void ShowPopUpWin(string playerName)
     {
         _popUp.SetActive(true);
-        _playerWinText.text = "Game Over!";
+        _playerWinText.text = playerName + " wins!";
+    }
+
+    public void ShowPopLose()
+    {
+        _popUp.SetActive(true);
     }
 
     public void ToMainLobby()

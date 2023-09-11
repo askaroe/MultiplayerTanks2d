@@ -2517,7 +2517,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Blue Wins!
+  m_Text: You lose...
 --- !u!222 &1113831437
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2820,6 +2820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69698baee2e171b45bf1b75d2ec86c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playersIDs: 
 --- !u!4 &1342517979
 Transform:
   m_ObjectHideFlags: 0

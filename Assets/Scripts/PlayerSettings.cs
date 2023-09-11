@@ -46,5 +46,7 @@ public class PlayerSettings : NetworkBehaviour
     public void PlayerDestroyed()
     {
         spriteRenderer.sprite = playerSprites[4];
+        PlayerManager.Instance.DeletePLayerFromList((int)OwnerClientId);
     }
+
 }

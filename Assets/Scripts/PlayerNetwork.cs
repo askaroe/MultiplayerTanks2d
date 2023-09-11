@@ -12,7 +12,8 @@ public class PlayerNetwork : NetworkBehaviour
     private float _playerSpeed = 2.0f;
     [SerializeField] 
     private GameObject _playerUI;
-    private bool _isTurnedOn = false;
+    private bool _isTurnedOn;
+    private bool _isPlayerInList;
 
     private NetworkVariable<int> _playerLife = new NetworkVariable<int>(3,
         NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
@@ -32,6 +33,11 @@ public class PlayerNetwork : NetworkBehaviour
         if (SceneManager.GetActiveScene().name == "SampleScene" && !_isTurnedOn)
         {
             _playerUI.SetActive(true);
+            if (!_isPlayerInList)
+            {
+                PlayerManager.Instance.AddPlayersToList((int)OwnerClientId);
+                _isPlayerInList = true;
+            }
         }
 
         Movement();
@@ -77,6 +83,6 @@ public class PlayerNetwork : NetworkBehaviour
         _playerSpeed = 0f;
         _collider.enabled = false;
         _isDestroyed = true;
-        PlayerManager.Instance.UpdateDestroyedPlayersCount();
+        //PlayerManager.Instance.UpdateDestroyedPlayersCount();
     }
 }
